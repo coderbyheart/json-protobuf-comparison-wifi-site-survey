@@ -1,0 +1,7 @@
+{
+  "name": "protobuf-test",
+  "type": "module",
+  "devDependencies": {
+    "protobufjs": "7.1.2"
+  }
+}

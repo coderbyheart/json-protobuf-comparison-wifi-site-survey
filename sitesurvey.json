@@ -1,0 +1,179 @@
+{
+  "ts": 1671183349244,
+  "v": [
+    {
+      "mac": "4c:e1:75:bf:e2:a0",
+      "ssid": "NORDIC-GUEST",
+      "rssi": -42,
+      "chan": 1
+    },
+    {
+      "mac": "4c:e1:75:bf:e2:a1",
+      "ssid": "NORDIC-INTERNAL",
+      "rssi": -42,
+      "chan": 1
+    },
+    {
+      "mac": "88:15:44:ac:6c:87",
+      "ssid": "Geoikt",
+      "rssi": -78,
+      "chan": 1
+    },
+    {
+      "mac": "8e:15:44:ac:6c:87",
+      "ssid": "Geowlan",
+      "rssi": -80,
+      "chan": 1
+    },
+    {
+      "mac": "80:e0:1d:02:2e:22",
+      "ssid": "TnGroup",
+      "rssi": -64,
+      "chan": 6
+    },
+    {
+      "mac": "80:e0:1d:02:2e:21",
+      "ssid": "Telenor_Guest",
+      "rssi": -85,
+      "chan": 6
+    },
+    {
+      "mac": "80:e0:1d:02:2e:27",
+      "ssid": "TnNorgeMacOS",
+      "rssi": -63,
+      "chan": 6
+    },
+    {
+      "mac": "80:e0:1d:02:2e:23",
+      "ssid": "Telenor_Skunk_Works",
+      "rssi": -64,
+      "chan": 6
+    },
+    {
+      "mac": "80:e0:1d:02:2e:25",
+      "ssid": "TnNorge",
+      "rssi": -64,
+      "chan": 6
+    },
+    {
+      "mac": "ea:cb:bc:8f:77:3f",
+      "rssi": -68,
+      "chan": 6
+    },
+    {
+      "mac": "ee:cb:bc:8f:77:3f",
+      "rssi": -69,
+      "chan": 6
+    },
+    {
+      "mac": "de:cb:bc:8f:77:3f",
+      "rssi": -70,
+      "chan": 6
+    },
+    {
+      "mac": "7c:10:c9:02:b8:68",
+      "ssid": "PTU_TEST",
+      "rssi": -53
+    },
+    {
+      "mac": "88:15:44:ac:6c:6e",
+      "ssid": "Geoikt",
+      "rssi": -74,
+      "chan": 11
+    },
+    {
+      "mac": "9e:15:44:ac:6b:1f",
+      "ssid": "Geoccast",
+      "rssi": -76,
+      "chan": 11
+    },
+    {
+      "mac": "96:15:44:ac:6b:1f",
+      "ssid": "Geotek",
+      "rssi": -73,
+      "chan": 11
+    },
+    {
+      "mac": "4c:e1:75:80:5e:6e",
+      "ssid": "NORDIC-INTERNAL",
+      "rssi": -76,
+      "chan": 36
+    },
+    {
+      "mac": "8e:15:54:ac:6c:6e",
+      "ssid": "Geowlan",
+      "rssi": -85,
+      "chan": 36
+    },
+    {
+      "mac": "9e:15:54:ac:6c:6e",
+      "ssid": "Geoccast",
+      "rssi": -84,
+      "chan": 36
+    },
+    {
+      "mac": "96:15:54:ac:6c:6e",
+      "ssid": "Geotek",
+      "rssi": -84,
+      "chan": 36
+    },
+    {
+      "mac": "b6:15:54:ac:6c:6e",
+      "rssi": -85,
+      "chan": 36
+    },
+    {
+      "mac": "e2:cb:ac:8f:77:3f",
+      "ssid": "Geoikt",
+      "rssi": -86,
+      "chan": 48
+    },
+    {
+      "mac": "ea:cb:ac:8f:77:3f",
+      "ssid": "Geogjest",
+      "rssi": -85,
+      "chan": 48
+    },
+    {
+      "mac": "ee:cb:ac:8f:77:3f",
+      "ssid": "Geoprosjekt",
+      "rssi": -85,
+      "chan": 48
+    },
+    {
+      "mac": "f2:cb:ac:8f:77:3f",
+      "ssid": "Pets",
+      "rssi": -86,
+      "chan": 48
+    },
+    {
+      "mac": "fe:cb:ac:8f:77:3f",
+      "ssid": "Geotek",
+      "rssi": -85,
+      "chan": 48
+    },
+    {
+      "mac": "de:cb:ac:8f:77:3f",
+      "rssi": -86,
+      "chan": 48
+    },
+    {
+      "mac": "8a:15:54:ac:6b:1f",
+      "ssid": "Geoikt",
+      "rssi": -83,
+      "chan": 100
+    },
+    {
+      "mac": "86:15:54:ac:6b:1f",
+      "ssid": "Geoprosjekt",
+      "rssi": -83,
+      "chan": 100
+    },
+    {
+      "mac": "9e:15:54:ac:6b:1f",
+      "ssid": "Geoccast",
+      "rssi": -84,
+      "chan": 100
+    }
+  ]
+}
