@@ -13,10 +13,13 @@ const root = await protobuf.load(path.join(process.cwd(), "sitesurvey.proto"));
 const siteSurvey = root.lookupType("asset_tracker_v2.WiFiSiteSurvey");
 
 // Create the protobuf message, convert Mac addresses to long to further save data
+// We don't have to use short keys (v, chan) for the protobuf message (as in the JSON)
+// and can use full, descriptive names.
 const message = siteSurvey.create({
   ...jsonData,
-  v: jsonData.v.map(({ mac, ...rest }) => ({
+  accesspoints: jsonData.v.map(({ mac, chan, ...rest }) => ({
     ...rest,
+    channel: chan,
     mac: BigInt(`0x${mac.replace(/:/g, "")}`).toString(),
   })),
 });
@@ -26,7 +29,7 @@ const encoded = siteSurvey.encode(message).finish();
 const decoded = siteSurvey.decode(encoded);
 console.log({
   ...decoded,
-  v: decoded.v.map(({ mac, ...rest }) => ({
+  v: decoded.accesspoints.map(({ mac, ...rest }) => ({
     ...rest,
     mac: formatMac(parseInt(mac, 10).toString(16)),
   })),

@@ -2,13 +2,13 @@ package asset_tracker_v2;
 syntax = "proto3";
 
 message WiFiSiteSurvey {
-    uint32 ts = 1;
-    repeated AP v = 2; 
+    uint32 timestamp = 1;
+    repeated AP accesspoints = 2;
 }
 
 message AP {
     int64 mac = 1;
     string ssid = 2;
     int32 rssi = 3;
-    int32 chan = 4;
+    int32 channel = 4;
 }
