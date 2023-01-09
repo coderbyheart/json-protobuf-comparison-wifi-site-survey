@@ -9,6 +9,6 @@ message WiFiSiteSurvey {
 message AP {
     int64 mac = 1;
     string ssid = 2;
-    int32 rssi = 3;
+    sint32 rssi = 3;
     int32 channel = 4;
 }
