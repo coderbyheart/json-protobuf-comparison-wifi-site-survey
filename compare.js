@@ -12,30 +12,38 @@ const root = await protobuf.load(path.join(process.cwd(), "sitesurvey.proto"));
 
 const siteSurvey = root.lookupType("asset_tracker_v2.WiFiSiteSurvey");
 
+// Eliminate data that is not correct (missing some info)
+const data = jsonData.v.filter(({ mac, chan, ssid, rssi }) => {
+  return mac != undefined
+      && chan != undefined
+      && ssid != undefined
+      && rssi != undefined
+})
+
 // Create the protobuf message, convert Mac addresses to long to further save data
 // We don't have to use short keys (v, chan) for the protobuf message (as in the JSON)
 // and can use full, descriptive names.
 const message = siteSurvey.create({
-  ...jsonData,
-  accesspoints: jsonData.v.map(({ mac, chan, ...rest }) => ({
-    ...rest,
-    channel: chan,
-    mac: BigInt(`0x${mac.replace(/:/g, "")}`).toString(),
-  })),
-});
+  macs: data.map(({ mac }) => BigInt(`0x${mac.replace(/:/g, "")}`).toString()),
+  ssids: data.map(({ ssid }) => ssid),
+  rssis: data.map(({ rssi }) => rssi),
+  channels: data.map(({ chan }) => chan),
+})
+
+console.log(message)
+
 const encoded = siteSurvey.encode(message).finish();
 
-// Decode the payload, restoring the original MAC address formatting
+// // Decode the payload, restoring the original MAC address formatting
 const decoded = siteSurvey.decode(encoded);
+
 console.log({
   ...decoded,
-  v: decoded.accesspoints.map(({ mac, ...rest }) => ({
-    ...rest,
-    mac: formatMac(parseInt(mac, 10).toString(16)),
-  })),
+  macs: decoded.macs.map((mac) => formatMac(parseInt(mac, 10).toString(16))),
 });
 
 console.log(`Found APs`, jsonData.v.length);
+console.log(`Found Correct APs`, data.length);
 console.log(`JSON payload length:`, JSON.stringify(jsonData).length, "bytes");
 console.log(
   `Protobuf payload length:`,
