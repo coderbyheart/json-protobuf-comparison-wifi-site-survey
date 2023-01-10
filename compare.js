@@ -24,6 +24,7 @@ const data = jsonData.v.filter(({ mac, chan, ssid, rssi }) => {
 // We don't have to use short keys (v, chan) for the protobuf message (as in the JSON)
 // and can use full, descriptive names.
 const message = siteSurvey.create({
+  timestamp: BigInt(jsonData.ts).toString(),
   macs: data.map(({ mac }) => BigInt(`0x${mac.replace(/:/g, "")}`).toString()),
   ssids: data.map(({ ssid }) => ssid),
   rssis: data.map(({ rssi }) => rssi),
@@ -39,6 +40,7 @@ const decoded = siteSurvey.decode(encoded);
 
 console.log({
   ...decoded,
+  timestamp: BigInt(decoded.timestamp).toString(),
   macs: decoded.macs.map((mac) => formatMac(parseInt(mac, 10).toString(16))),
 });
 

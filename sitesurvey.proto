@@ -3,7 +3,7 @@ syntax = "proto3";
 package asset_tracker_v2;
 
 message WiFiSiteSurvey {
-  uint32 timestamp = 1;
+  uint64 timestamp = 1;
   repeated int64 macs = 2;
   repeated string ssids = 3;
   repeated sint32 rssis = 4;
