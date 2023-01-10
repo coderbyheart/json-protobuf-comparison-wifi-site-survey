@@ -8,5 +8,5 @@ node compare.js
 
 # Found APs 30
 # JSON payload length: 1949 bytes
-# Protobuf payload length: 713 bytes (37%)
+# Protobuf payload length: 509 bytes (26%)
 ```

@@ -14,29 +14,34 @@ const siteSurvey = root.lookupType("asset_tracker_v2.WiFiSiteSurvey");
 
 // Eliminate data that is not correct (missing some info)
 const data = jsonData.v.filter(({ mac, chan, ssid, rssi }) => {
-  return mac != undefined
-      && chan != undefined
-      && ssid != undefined
-      && rssi != undefined
-})
+  return (
+    mac != undefined &&
+    chan != undefined &&
+    ssid != undefined &&
+    rssi != undefined
+  );
+});
 
 // Create the protobuf message, convert Mac addresses to long to further save data
 // We don't have to use short keys (v, chan) for the protobuf message (as in the JSON)
 // and can use full, descriptive names.
 const message = siteSurvey.create({
+  timestamp: jsonData.ts,
   macs: data.map(({ mac }) => BigInt(`0x${mac.replace(/:/g, "")}`).toString()),
   ssids: data.map(({ ssid }) => ssid),
   rssis: data.map(({ rssi }) => rssi),
   channels: data.map(({ chan }) => chan),
-})
+});
 
-console.log(message)
+console.log("message:");
+console.log(message);
 
 const encoded = siteSurvey.encode(message).finish();
 
 // // Decode the payload, restoring the original MAC address formatting
 const decoded = siteSurvey.decode(encoded);
 
+console.log("decoded:");
 console.log({
   ...decoded,
   macs: decoded.macs.map((mac) => formatMac(parseInt(mac, 10).toString(16))),
