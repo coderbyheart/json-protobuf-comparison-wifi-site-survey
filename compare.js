@@ -2,6 +2,7 @@ import protobuf from "protobufjs";
 import path from "path";
 import { readFile } from "fs/promises";
 import { formatMac } from "./formatMac.js";
+import assert from "assert/strict";
 
 // Parse Site Survey JSON
 const jsonData = JSON.parse(
@@ -16,7 +17,7 @@ const siteSurvey = root.lookupType("asset_tracker_v2.WiFiSiteSurvey");
 // We don't have to use short keys (v, chan) for the protobuf message (as in the JSON)
 // and can use full, descriptive names.
 const message = siteSurvey.create({
-  ...jsonData,
+  timestamp: BigInt(jsonData.ts).toString(),
   accesspoints: jsonData.v.map(({ mac, chan, ...rest }) => ({
     ...rest,
     channel: chan,
@@ -26,14 +27,23 @@ const message = siteSurvey.create({
 const encoded = siteSurvey.encode(message).finish();
 
 // Decode the payload, restoring the original MAC address formatting
+
 const decoded = siteSurvey.decode(encoded);
-console.log({
-  ...decoded,
-  v: decoded.accesspoints.map(({ mac, ...rest }) => ({
-    ...rest,
-    mac: formatMac(parseInt(mac, 10).toString(16)),
-  })),
-});
+const transmitted = {
+  ts: parseInt(BigInt(decoded.timestamp)),
+  v: decoded.accesspoints.map(({ mac, channel, ...rest }) =>
+    Object.fromEntries(
+      Object.entries({
+        ...rest,
+        chan: channel === false ? undefined : channel,
+        mac: formatMac(parseInt(mac, 10).toString(16)),
+      }).filter(([, v]) => v)
+    )
+  ),
+};
+console.log(transmitted);
+
+assert.deepEqual(transmitted, jsonData);
 
 console.log(`Found APs`, jsonData.v.length);
 console.log(`JSON payload length:`, JSON.stringify(jsonData).length, "bytes");
