@@ -10,5 +10,5 @@ message AP {
     required int64 mac = 1;
     optional string ssid = 2;
     required sint32 rssi = 3;
-    optional int32 channel = 4;
+    optional uint32 channel = 4;
 }
